@@ -41,7 +41,7 @@ public class AveServiceTest {
         Ave guardado = service.guardarAve(new Ave());
 
         assertNotNull(guardado);
-        assertEquals("Fallar test", guardado.getNombre());
+        assertEquals("Periquito", guardado.getNombre());
         verify(repository, times(1)).save(any(Ave.class));
     }
 
