@@ -1,5 +1,4 @@
 name: Integración Continua Java
-
 on:
   push:
     branches: [ "**" ]
@@ -9,7 +8,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    
     services:
       mysql:
         image: mysql:8
@@ -25,20 +23,20 @@ jobs:
           --health-retries=5
 
     steps:
-    - name: 1. Descargar el código del repositorio
-      uses: actions/checkout@v4
+      - name: 1. Descargar el código del repositorio
+        uses: actions/checkout@v4
 
-    - name: 2. Configurar el entorno de Java
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
+      - name: 2. Configurar el entorno de Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
 
-    - name: 3. Ejecutar tests con Maven Wrapper
-      env:
-        SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/testdb?serverTimezone=UTC
-        SPRING_DATASOURCE_USERNAME: root
-        SPRING_DATASOURCE_PASSWORD: root
-      run: |
-        chmod +x mvnw
-        ./mvnw test
+      - name: 3. Ejecutar tests con Maven Wrapper
+        env:
+          SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/testdb?serverTimezone=UTC
+          SPRING_DATASOURCE_USERNAME: root
+          SPRING_DATASOURCE_PASSWORD: root
+        run: |
+          chmod +x mvnw
+          ./mvnw test
